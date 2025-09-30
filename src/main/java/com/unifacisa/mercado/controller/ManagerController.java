@@ -40,6 +40,16 @@ public class ManagerController {
     public Manager updateManager(@PathVariable Long id, @RequestBody Manager manager) {
         return managerService.updateManager(id, manager);
     }
+    
+    @PostMapping("/{managerId}/add-employee/{employeeId}")
+    public Manager addEmployee(@PathVariable Long managerId, @PathVariable Long employeeId) {
+        return managerService.addEmployeeToManager(managerId, employeeId);
+    }
+
+    @DeleteMapping("/{managerId}/remove-employee/{employeeId}")
+    public Manager removeEmployee(@PathVariable Long managerId, @PathVariable Long employeeId) {
+        return managerService.removeEmployeeFromManager(managerId, employeeId);
+    }
 
     @DeleteMapping("/{id}")
     public void deleteManager(@PathVariable Long id) {

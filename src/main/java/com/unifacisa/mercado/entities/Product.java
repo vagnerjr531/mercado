@@ -1,9 +1,10 @@
 package com.unifacisa.mercado.entities;
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,31 +18,33 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="products")
-public class Product implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Product {
+
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
     @ManyToMany(mappedBy = "products")
-    @JsonBackReference
-    private List<Cart> carts = new ArrayList<>();
+    @JsonIdentityInfo(
+    		  generator = ObjectIdGenerators.PropertyGenerator.class,
+    		  property = "id"
+    		)
+    private List<Cart> carts;
 	
 	private String name;
 	private Double price;
 	private int stock;
 	
-	
 	public Product() {
-		
+
 	}
 
 	public Product(String name, Double price, int stock) {
-		super();
 		this.name = name;
 		this.price = price;
 		this.stock = stock;
+		this.carts = new ArrayList<Cart>();
 	}
 
 	public String getName() {
@@ -68,8 +71,9 @@ public class Product implements Serializable {
 		this.stock = stock;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Long getId() {
+		
+		return this.id;
 	}
 
 }

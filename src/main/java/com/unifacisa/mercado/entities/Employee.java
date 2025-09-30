@@ -26,14 +26,20 @@ public class Employee {
     private Manager manager;
 
     private String name;
+    
+    public Employee() {
+    	
+    }
+    
+    public Employee(String name) {
+    	this.name = name;
+
+    }
+    
     public Long getId() {
 		return id;
 	}
-    
-    public Employee(String name, Manager manager) {
-    	this.name = name;
-    	this.manager = manager;
-    }
+   
 
 	public void setId(Long id) {
 		this.id = id;

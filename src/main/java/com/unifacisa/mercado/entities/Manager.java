@@ -24,7 +24,12 @@ public class Manager {
 
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<Employee> employees = new ArrayList<>();
+    private List<Employee> employees;
+    
+    public Manager() {
+    	
+    	this.employees = new ArrayList<Employee>();
+    }
     
 
     public void addEmployee(Employee employee) {
@@ -51,6 +56,14 @@ public class Manager {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public List<Employee> getEmployees() {
+	    return employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+	    this.employees = employees;
 	}
     
 
