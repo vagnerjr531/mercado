@@ -1,27 +1,36 @@
 package com.unifacisa.mercado.entities;
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 
 
 
 @Entity
-@Table(name="/products")
+@Table(name="products")
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	
+    @ManyToMany(mappedBy = "products")
+    private List<Cart> carts = new ArrayList<>();
+	
 	private String name;
 	private Double price;
 	private int stock;
+	
 	
 	public Product() {
 		
@@ -60,23 +69,6 @@ public class Product implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(name);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Product other = (Product) obj;
-		return Objects.equals(name, other.name);
 	}
 
 }

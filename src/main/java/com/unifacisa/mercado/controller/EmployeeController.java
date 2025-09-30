@@ -9,28 +9,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.unifacisa.mercado.entities.Client;
-import com.unifacisa.mercado.services.ClientService;
+import com.unifacisa.mercado.entities.Employee;
+import com.unifacisa.mercado.services.EmployeeService;
 
 @RestController
-@RequestMapping("/clients")
-public class ClientController {
+@RequestMapping("/employees")
+public class EmployeeController {
 	
 	@Autowired
-	private ClientService clientService;
+	private EmployeeService employeeService;
 	
 	
 	@PostMapping
-	public void registerProduct(@RequestBody Client client) {
+	public void registerEmployee(@RequestBody Employee employee) {
 		
-		clientService.registerClient(client);
+		employeeService.registerEmployee(employee);
 	}
 	
 	
     @GetMapping
-    public List<Client> listarClients(){
+    public List<Employee> listarEmployee(){
     	
-        return clientService.listClients();
+        return employeeService.listEmployees();
     }	
-	
 }
