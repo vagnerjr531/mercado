@@ -28,21 +28,15 @@ public class Client implements Serializable {
     
 	private String name;
 	private String email;
-	private String phone;
-	private String adress;
 
-	private LocalDate registrationDate;
 	
 	public Client() {
 	}
 	
 	
-	public Client(Long id, String email, String phone, String adress, LocalDate registrationDate, String name) {
+	public Client(Long id, String email, String name) {
 		this.id = id;
 		this.email = email;
-		this.phone = phone;
-		this.adress = adress;
-		this.registrationDate = registrationDate;
 		this.name = name;
 	}
 
@@ -72,27 +66,4 @@ public class Client implements Serializable {
 		this.email = email;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getAdress() {
-		return adress;
-	}
-
-	public void setAdress(String adress) {
-		this.adress = adress;
-	}
-
-	public LocalDate getRegistrationDate() {
-		return registrationDate;
-	}
-
-	public void setRegistrationDate(LocalDate registrationDate) {
-		this.registrationDate = registrationDate;
-	}
 }

@@ -1,14 +1,15 @@
 package com.unifacisa.mercado.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Id;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -37,10 +38,13 @@ public class Cart implements Serializable{
         joinColumns = @JoinColumn(name = "cart_id"),
         inverseJoinColumns = @JoinColumn(name = "product_id")
     )
+    @JsonManagedReference
 	private List<Product> products;
 	
 	
 	public Cart() {
+		
+		this.products = new ArrayList<Product>();
 		
 	}
 
@@ -59,5 +63,15 @@ public class Cart implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public List<Product> getProducts() {
+	    return products;
+	}
+
+	public void setProducts(List<Product> products) {
+	    this.products = products;
+	}
+	
+	
 
 }

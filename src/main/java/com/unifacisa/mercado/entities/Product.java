@@ -3,12 +3,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Id;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
@@ -25,6 +25,7 @@ public class Product implements Serializable {
 	private Long id;
 	
     @ManyToMany(mappedBy = "products")
+    @JsonBackReference
     private List<Cart> carts = new ArrayList<>();
 	
 	private String name;

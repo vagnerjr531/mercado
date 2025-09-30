@@ -2,6 +2,8 @@ package com.unifacisa.mercado.entities;
 
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class Employee {
 
     @ManyToOne
     @JoinColumn(name = "manager_id")
+    @JsonBackReference
     private Manager manager;
 
     private String name;
